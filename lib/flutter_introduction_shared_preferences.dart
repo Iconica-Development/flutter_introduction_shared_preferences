@@ -7,25 +7,23 @@ class SharedPreferencesIntroductionDataProvider extends IntroductionInterface {
   SharedPreferencesIntroductionDataProvider();
 
   SharedPreferences? _prefs;
+  Future<SharedPreferences> get _preferences async {
+    return _prefs ??= await SharedPreferences.getInstance();
+  }
+
   String key = '_completedIntroduction';
 
   _writeKeyValue(String key, bool value) async {
-    _prefs!.setBool(key, value);
-  }
-
-  _init() async {
-    _prefs ??= await SharedPreferences.getInstance();
+    (await _preferences).setBool(key, value);
   }
 
   @override
   Future<void> setCompleted([bool value = true]) async {
-    await _init();
     _writeKeyValue(key, value);
   }
 
   @override
   Future<bool> shouldShow() async {
-    await _init();
-    return _prefs!.getBool(key) ?? true;
+    return !((await _preferences).getBool(key) ?? false);
   }
 }
