@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Iconica
+//
+// SPDX-License-Identifier: BSD-3-Clause
+
 library flutter_introduction_shared_preferences;
 
 import 'package:flutter_introduction_interface/flutter_introduction_interface.dart';
