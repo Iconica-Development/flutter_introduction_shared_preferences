@@ -30,6 +30,6 @@ class SharedPreferencesIntroductionDataProvider extends IntroductionInterface {
   @override
   Future<bool> shouldShow() async {
     await _init();
-    return _prefs!.getBool(key) ?? true;
+    return !(_prefs!.getBool(key) ?? false);
   }
 }
